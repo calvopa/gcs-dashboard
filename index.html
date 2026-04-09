@@ -15,23 +15,20 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-/* HEADER */
 .hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .hdr h1{font-size:17px;font-weight:700}
 .hdr-sub{font-size:11px;color:var(--text3);margin-top:2px}
 .hdr-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 /* SYNC BUTTON */
-.btn-sync{display:flex;align-items:center;gap:6px;background:var(--bg3);border:1.5px solid var(--border2);color:var(--text2);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;position:relative}
+.btn-sync{display:flex;align-items:center;gap:6px;background:var(--bg3);border:1.5px solid var(--border2);color:var(--text2);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s}
 .btn-sync:hover:not(:disabled){border-color:var(--green);color:var(--green)}
 .btn-sync:disabled{opacity:.6;cursor:not-allowed}
 .btn-sync.syncing{border-color:var(--blue);color:var(--blue)}
 .btn-sync.done{border-color:var(--green);color:var(--green)}
-.btn-sync.error{border-color:var(--red);color:var(--red)}
-.sync-icon{font-size:15px;display:inline-block}
+.sync-icon{font-size:15px}
 .btn-sync.syncing .sync-icon{animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .sync-ts{font-size:10px;color:var(--text3);text-align:right}
-/* ADD BUTTON */
 .btn-add{background:var(--blue2);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .15s}
 .btn-add:hover{background:var(--blue)}
 /* TOAST */
@@ -54,15 +51,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;ba
 .sec-head{padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .sec-title{font-size:13px;font-weight:700;color:var(--text)}
 /* SYNC LOG */
-.sync-log-wrap{padding:0 16px;overflow:hidden;max-height:0;transition:max-height .4s ease}
-.sync-log-wrap.open{max-height:160px}
+.log-wrap{padding:0 16px;overflow:hidden;max-height:0;transition:max-height .4s ease}
+.log-wrap.open{max-height:160px}
 .sync-log{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:11px;margin:8px 0 4px;max-height:130px;overflow-y:auto}
 .sli{padding:3px 0;display:flex;align-items:center;gap:7px;border-bottom:.5px solid var(--border);font-size:11px}
 .sli:last-child{border:none}
 .sli.new{color:var(--green)}
 .sli.upd{color:var(--amber)}
 .sli.same{color:var(--text3)}
-.sli.err{color:var(--red)}
 /* FILTER BAR */
 .filter-bar{padding:10px 16px;border-bottom:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .tabs{display:flex;gap:4px}
@@ -82,8 +78,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;ba
 .tbl tr:last-child td{border-bottom:none}
 .tbl tr:hover td{background:var(--bg3)}
 .tbl tr.sel td{background:var(--bluel)!important}
-.tbl tr.row-new td{animation:rowNew .8s ease}
-@keyframes rowNew{0%{background:#0a2e1a}100%{background:transparent}}
 /* BADGES */
 .badge{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;display:inline-block;white-space:nowrap}
 .b-dev{background:#1e3a5f;color:#60A5FA}
@@ -104,6 +98,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;ba
 .hrs-input{width:52px;padding:3px 6px;border:1px solid var(--border);border-radius:6px;font-size:11px;text-align:center;outline:none;font-family:inherit;background:var(--bg3);color:var(--text)}
 .hrs-input:focus{border-color:var(--blue)}
 .warn-b{font-size:9px;color:#FCA5A5;background:#450a0a;border-radius:5px;padding:2px 6px;margin-left:5px;font-weight:700}
+/* ── DEADLINE EDITABLE ── */
+.dl-cell{display:flex;align-items:center;gap:5px;position:relative}
+.dl-display{font-size:11px;cursor:pointer;padding:3px 7px;border-radius:6px;border:1px solid transparent;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.dl-display:hover{border-color:var(--border2);background:var(--bg3)}
+.dl-display .edit-icon{font-size:9px;opacity:0;transition:opacity .15s}
+.dl-display:hover .edit-icon{opacity:.6}
+.dl-edit{background:var(--bg3);border:1px solid var(--blue);color:var(--text);border-radius:6px;padding:3px 6px;font-size:11px;outline:none;font-family:inherit;display:none;width:130px}
+.dl-edit.active{display:block}
+.dl-display.active{display:none}
 /* TÉCNICOS */
 .tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:13px}
 .tc{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:11px;cursor:pointer;transition:all .18s}
@@ -134,7 +137,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;ba
 .chart-box{background:var(--bg3);border-radius:8px;padding:10px}
 .chart-box-t{font-size:11px;font-weight:700;color:var(--text2);margin-bottom:7px}
 .cload-wrap{padding:6px 16px 16px;position:relative;height:190px}
-/* MODAL */
+/* MODAL BASE */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:flex;align-items:center;justify-content:center;animation:fi .15s ease}
 @keyframes fi{from{opacity:0}to{opacity:1}}
 .modal{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;width:700px;max-width:95vw;max-height:88vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 25px 80px rgba(0,0,0,.6);animation:su .18s ease}
@@ -199,7 +202,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;ba
         <span class="sync-icon" id="sync-icon">↻</span>
         <span id="sync-label">Sincronizar ClickUp</span>
       </button>
-      <span class="sync-ts" id="sync-ts">Última sync: 08/04/2026 — datos actuales</span>
+      <span class="sync-ts" id="sync-ts">Última sync: 09/04/2026</span>
     </div>
     <button class="btn-add" onclick="openAddModal()">+ Nuevo proyecto</button>
     <span style="font-size:11px;color:var(--text3)" id="clock"></span>
@@ -225,12 +228,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;ba
         <span class="clr" onclick="clearDates()">✕ limpiar</span>
       </div>
     </div>
-    <!-- SYNC LOG -->
-    <div class="sync-log-wrap" id="log-wrap">
-      <div class="sync-log" id="sync-log"></div>
-    </div>
+    <div class="log-wrap" id="log-wrap"><div class="sync-log" id="sync-log"></div></div>
     <div style="padding:7px 16px 4px;font-size:10px;color:var(--text3)">
-      Click en fila → asignar técnicos · Click ✕ en chip → quitar técnico
+      Click en fila → asignar técnicos · ✕ en chip → quitar · click en fecha 📅 → editar deadline
     </div>
     <div class="tbl-wrap">
       <table class="tbl">
@@ -238,9 +238,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;ba
           <th style="width:30%">Proyecto</th>
           <th style="width:11%">Estado</th>
           <th style="width:10%">Prioridad</th>
-          <th style="width:27%">Técnicos</th>
-          <th style="width:11%">Hs estimadas</th>
-          <th style="width:11%">Deadline</th>
+          <th style="width:25%">Técnicos</th>
+          <th style="width:10%">Hs est.</th>
+          <th style="width:14%">Deadline</th>
         </tr></thead>
         <tbody id="tbody"></tbody>
       </table>
@@ -323,10 +323,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;ba
         <div class="fg"><label class="flbl">Deadline</label><input class="finput" id="f-dl" type="date"></div>
         <div class="fg"></div>
       </div>
-      <div class="fg">
-        <label class="flbl">Técnicos asignados</label>
-        <div class="tech-cbs" id="f-techs"></div>
-      </div>
+      <div class="fg"><label class="flbl">Técnicos asignados</label><div class="tech-cbs" id="f-techs"></div></div>
     </div>
     <div class="mfooter">
       <button class="btn-cancel" onclick="closeAddBtn()">Cancelar</button>
@@ -338,7 +335,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;ba
 <div class="toast" id="toast"></div>
 
 <script>
-// ── TÉCNICOS ─────────────────────────────────────────────────────────────────
+// ── TÉCNICOS ──────────────────────────────────────────────────────────────────
 const TECH={
   PC:{id:"PC",name:"Pablo Calvo",       role:"Líder Ingeniería",          color:"#3B82F6",bg:"#1e3a5f",ckId:"111954808",hours:160},
   KE:{id:"KE",name:"Kevin Escobar",     role:"Desarrollo · APIs · Infra", color:"#F59E0B",bg:"#3d2a0a",ckId:"112046256",hours:160},
@@ -350,30 +347,30 @@ const TECH={
 const CK2INIT={};
 Object.values(TECH).forEach(t=>CK2INIT[t.ckId]=t.id);
 
-// ── PROYECTOS (datos frescos 08/04/2026) ─────────────────────────────────────
+// ── PROYECTOS ─────────────────────────────────────────────────────────────────
 let projs=[
-  {id:"p01",ckId:"86ag9m22c", name:"Voicebot: Cover-Colegiales",            status:"dev", prio:"urgent",type:"voicebot",assignees:["PC","SP"],hrs:40, dl:"2026-04-05"},
-  {id:"p02",ckId:"86aemh2fb", name:"Magistratura: Juristeca",               status:"dev", prio:"high",  type:"bot",    assignees:["KE"],     hrs:60, dl:"2026-04-15"},
-  {id:"p03",ckId:"86aeu4xtz", name:"Voicebot Cobros: Dexter",               status:"dev", prio:"high",  type:"voicebot",assignees:["DS"],    hrs:80, dl:"2026-04-20"},
-  {id:"p04",ckId:"86afmzn16", name:"Hacoaj",                                status:"dev", prio:"normal",type:"bot",    assignees:["DS"],     hrs:20, dl:"2026-04-01"},
-  {id:"p05",ckId:"86aexmb56", name:"Abrines",                               status:"dev", prio:"urgent",type:"bot",    assignees:["DS"],     hrs:30, dl:"2026-04-01"},
-  {id:"p06",ckId:"86ag4rfg4", name:"Migración nuevo server AWS",            status:"dev", prio:"urgent",type:"infra",  assignees:["KE"],     hrs:40, dl:"2026-04-01"},
-  {id:"p07",ckId:"86aeqn52w", name:"Magistratura: Meayuda 2.0",            status:"qa",  prio:"high",  type:"voicebot",assignees:["PC"],    hrs:20, dl:"2026-04-15"},
-  {id:"p08",ckId:"86aeu3kvc", name:"Voicebot: ICBA",                       status:"qa",  prio:"normal",type:"voicebot",assignees:["PC","KE"],hrs:30, dl:"2026-04-15"},
-  {id:"p09",ckId:"86age9qkw", name:"Bremen Tools",                         status:"qa",  prio:"high",  type:"bot",    assignees:["KE","DS"],hrs:25, dl:"2026-04-01"},
-  {id:"p10",ckId:"86agjd1bj", name:"Baby Company",                         status:"qa",  prio:"high",  type:"bot",    assignees:["DS"],     hrs:30, dl:"2026-04-01"},
-  {id:"p11",ckId:"86ag9m410", name:"Voicebot: Reino Cerámicos",            status:"blk", prio:"normal",type:"voicebot",assignees:["PC","AB"],hrs:35, dl:"2026-04-01"},
-  {id:"p12",ckId:"86afbczh4", name:"Plan Voicebot Nación Seguros",         status:"blk", prio:"high",  type:"voicebot",assignees:["PC","MS"],hrs:20, dl:""},
-  {id:"p13",ckId:"86afqk5yq", name:"ENTE CABA — Nuevas APIs",              status:"blk", prio:"normal",type:"dev",    assignees:["KE"],     hrs:30, dl:""},
-  {id:"p14",ckId:"86af7bw6m", name:"Dashboard OBSBA",                      status:"blk", prio:"normal",type:"dev",    assignees:["PC","DS","MS"],hrs:40,dl:""},
-  {id:"p15",ckId:"86af8zfw9", name:"Sanatorio Trinidad",                   status:"blk", prio:"normal",type:"bot",    assignees:["DS","KE"],hrs:25, dl:""},
-  {id:"p16",ckId:"86afymvh7", name:"Rinkel",                               status:"blk", prio:"normal",type:"dev",    assignees:["KE"],     hrs:15, dl:""},
-  {id:"p17",ckId:"86agqnyf4", name:"Defensa — Tickets",                    status:"blk", prio:"normal",type:"other",  assignees:["KE"],     hrs:10, dl:""},
-  {id:"p18",ckId:"86agp9zjg", name:"OSPJN — Bot IA (WhatsApp+GPT-4o)",    status:"back",prio:"high",  type:"bot",    assignees:["KE","DS"],hrs:50, dl:"2026-04-28"},
-  {id:"p19",ckId:"86agq4a7h", name:"Exploración ElevenLabs Agents",        status:"back",prio:"normal",type:"voicebot",assignees:["KE","PC"],hrs:20, dl:"2026-04-01"},
-  {id:"p20",ckId:"86afw5u2q", name:"Migración cuenta ElevenLabs",          status:"back",prio:"normal",type:"voicebot",assignees:["PC"],    hrs:10, dl:""},
-  {id:"p21",ckId:"86afmzm19", name:"Landing: Plataforma grupocesa",        status:"back",prio:"high",  type:"dev",    assignees:["DS"],     hrs:50, dl:""},
-  {id:"p22",ckId:"86aganx4z", name:"Proyecto Mejora Continua",             status:"back",prio:"low",   type:"other",  assignees:["PC"],    hrs:15, dl:""},
+  {id:"p01",ckId:"86ag9m22c", name:"Voicebot: Cover-Colegiales",         status:"dev", prio:"urgent",type:"voicebot",assignees:["PC","SP"],hrs:40, dl:"2026-04-05"},
+  {id:"p02",ckId:"86aemh2fb", name:"Magistratura: Juristeca",            status:"dev", prio:"high",  type:"bot",    assignees:["KE"],     hrs:60, dl:"2026-04-15"},
+  {id:"p03",ckId:"86aeu4xtz", name:"Voicebot Cobros: Dexter",            status:"dev", prio:"high",  type:"voicebot",assignees:["DS"],    hrs:80, dl:"2026-04-20"},
+  {id:"p04",ckId:"86afmzn16", name:"Hacoaj",                             status:"dev", prio:"normal",type:"bot",    assignees:["DS"],     hrs:20, dl:"2026-04-01"},
+  {id:"p05",ckId:"86aexmb56", name:"Abrines",                            status:"dev", prio:"urgent",type:"bot",    assignees:["DS"],     hrs:30, dl:"2026-04-01"},
+  {id:"p06",ckId:"86ag4rfg4", name:"Migración nuevo server AWS",         status:"dev", prio:"urgent",type:"infra",  assignees:["KE"],     hrs:40, dl:"2026-04-01"},
+  {id:"p07",ckId:"86aeqn52w", name:"Magistratura: Meayuda 2.0",         status:"qa",  prio:"high",  type:"voicebot",assignees:["PC"],    hrs:20, dl:"2026-04-15"},
+  {id:"p08",ckId:"86aeu3kvc", name:"Voicebot: ICBA",                    status:"qa",  prio:"normal",type:"voicebot",assignees:["PC","KE"],hrs:30,dl:"2026-04-15"},
+  {id:"p09",ckId:"86age9qkw", name:"Bremen Tools",                      status:"qa",  prio:"high",  type:"bot",    assignees:["KE","DS"],hrs:25, dl:"2026-04-01"},
+  {id:"p10",ckId:"86agjd1bj", name:"Baby Company",                      status:"qa",  prio:"high",  type:"bot",    assignees:["DS"],     hrs:30, dl:"2026-04-01"},
+  {id:"p11",ckId:"86ag9m410", name:"Voicebot: Reino Cerámicos",         status:"blk", prio:"normal",type:"voicebot",assignees:["PC","AB"],hrs:35,dl:"2026-04-01"},
+  {id:"p12",ckId:"86afbczh4", name:"Plan Voicebot Nación Seguros",      status:"blk", prio:"high",  type:"voicebot",assignees:["PC","MS"],hrs:20,dl:""},
+  {id:"p13",ckId:"86afqk5yq", name:"ENTE CABA — Nuevas APIs",           status:"blk", prio:"normal",type:"dev",    assignees:["KE"],     hrs:30, dl:""},
+  {id:"p14",ckId:"86af7bw6m", name:"Dashboard OBSBA",                   status:"blk", prio:"normal",type:"dev",    assignees:["PC","DS","MS"],hrs:40,dl:""},
+  {id:"p15",ckId:"86af8zfw9", name:"Sanatorio Trinidad",                status:"blk", prio:"normal",type:"bot",    assignees:["DS","KE"],hrs:25, dl:""},
+  {id:"p16",ckId:"86afymvh7", name:"Rinkel",                            status:"blk", prio:"normal",type:"dev",    assignees:["KE"],     hrs:15, dl:""},
+  {id:"p17",ckId:"86agqnyf4", name:"Defensa — Tickets",                 status:"blk", prio:"normal",type:"other",  assignees:["KE"],     hrs:10, dl:""},
+  {id:"p18",ckId:"86agp9zjg", name:"OSPJN — Bot IA (WhatsApp+GPT-4o)", status:"back",prio:"high",  type:"bot",    assignees:["KE","DS"],hrs:50, dl:"2026-04-28"},
+  {id:"p19",ckId:"86agq4a7h", name:"Exploración ElevenLabs Agents",    status:"back",prio:"normal",type:"voicebot",assignees:["KE","PC"],hrs:20,dl:"2026-04-01"},
+  {id:"p20",ckId:"86afw5u2q", name:"Migración cuenta ElevenLabs",      status:"back",prio:"normal",type:"voicebot",assignees:["PC"],    hrs:10, dl:""},
+  {id:"p21",ckId:"86afmzm19", name:"Landing: Plataforma grupocesa",    status:"back",prio:"high",  type:"dev",    assignees:["DS"],     hrs:50, dl:""},
+  {id:"p22",ckId:"86aganx4z", name:"Proyecto Mejora Continua",         status:"back",prio:"low",   type:"other",  assignees:["PC"],    hrs:15, dl:""},
 ];
 
 const SM={dev:{l:"En desarrollo",c:"b-dev"},qa:{l:"QA cliente",c:"b-qa"},blk:{l:"Bloqueado",c:"b-blk"},back:{l:"Backlog",c:"b-back"}};
@@ -383,7 +380,7 @@ const SC=["#3B82F6","#8B5CF6","#F59E0B","#9CA3AF"];
 const TC=["#2563EB","#7C3AED","#10B981","#D97706","#6B7280"];
 const SMAP={"en desarrollo":"dev","en curso":"dev","qa - cliente":"qa","pendiente por terceros":"blk","proyectos en curso":"back","pendiente":"back","in progress":"dev","to do":"back"};
 const PMAP={urgent:"urgent",high:"high",normal:"normal",low:"low"};
-const TYPE_TAGS={"voicebot":"voicebot","bot ia":"bot","desarrollo":"dev","infraestructura":"infra"};
+const TTAGS={"voicebot":"voicebot","bot ia":"bot","desarrollo":"dev","infraestructura":"infra"};
 
 let filter="all",selProj=null,modalTech=null;
 let cStatus=null,cType=null,cLoad=null,mChart=null;
@@ -393,114 +390,95 @@ let pidCtr=100;
 const hoursUsed=tid=>projs.reduce((a,p)=>p.assignees.includes(tid)?a+Math.round(p.hrs/(p.assignees.length||1)):a,0);
 const isOver=tid=>hoursUsed(tid)>TECH[tid].hours;
 const pctUsed=tid=>Math.min(Math.round(hoursUsed(tid)/TECH[tid].hours*100),100);
+
 function fmtDl(dl){
-  if(!dl)return{txt:"—",color:"var(--text3)"};
+  if(!dl)return{txt:"Sin fecha",color:"var(--text3)",icon:"📅"};
   const d=new Date(dl+"T12:00:00"),now=new Date();now.setHours(0,0,0,0);
   const diff=Math.ceil((d-now)/86400000);
   const s=d.toLocaleDateString("es-AR",{day:"2-digit",month:"2-digit",year:"2-digit"});
-  if(diff<0)return{txt:`${s} ⚠`,color:"var(--red)"};
-  if(diff===0)return{txt:`${s} · hoy`,color:"var(--amber)"};
-  if(diff<=7)return{txt:`${s} · ${diff}d`,color:"var(--amber)"};
-  return{txt:s,color:"var(--text2)"};
+  if(diff<0) return{txt:`${s}`,color:"var(--red)",  icon:"⚠"};
+  if(diff===0)return{txt:`${s} · hoy`,color:"var(--amber)",icon:"📅"};
+  if(diff<=7) return{txt:`${s} · ${diff}d`,color:"var(--amber)",icon:"📅"};
+  return{txt:s,color:"var(--text2)",icon:"📅"};
 }
+
 function msToDate(ms){if(!ms)return"";try{return new Date(parseInt(ms)).toISOString().split("T")[0];}catch{return"";}}
+
+// ── DEADLINE EDITABLE ─────────────────────────────────────────────────────────
+function startEditDl(pid,event){
+  event.stopPropagation();
+  const display=document.getElementById(`dl-display-${pid}`);
+  const edit=document.getElementById(`dl-edit-${pid}`);
+  if(!display||!edit)return;
+  display.classList.add("active");
+  edit.classList.add("active");
+  edit.focus();
+}
+
+function commitDl(pid){
+  const edit=document.getElementById(`dl-edit-${pid}`);
+  const display=document.getElementById(`dl-display-${pid}`);
+  if(!edit||!display)return;
+  const p=projs.find(p=>p.id===pid);
+  if(!p)return;
+  const newDl=edit.value||"";
+  const changed=p.dl!==newDl;
+  p.dl=newDl;
+  display.classList.remove("active");
+  edit.classList.remove("active");
+  // Actualizar solo el display sin re-renderizar toda la tabla
+  const {txt,color,icon}=fmtDl(newDl);
+  const span=display.querySelector(".dl-txt");
+  const ico=display.querySelector(".dl-icon");
+  if(span)span.textContent=txt;
+  if(ico)ico.textContent=icon;
+  display.style.color=color;
+  if(changed){
+    showToast(`📅 Deadline actualizado · ${p.name.slice(0,25)}${p.name.length>25?"…":""}`,"success");
+    renderKPIs();
+    if(modalTech)openModal(modalTech);
+  }
+}
+
+function cancelDl(pid){
+  const edit=document.getElementById(`dl-edit-${pid}`);
+  const display=document.getElementById(`dl-display-${pid}`);
+  if(!edit||!display)return;
+  const p=projs.find(p=>p.id===pid);
+  if(p)edit.value=p.dl||"";
+  display.classList.remove("active");
+  edit.classList.remove("active");
+}
 
 // ── SYNC ──────────────────────────────────────────────────────────────────────
 async function syncClickUp(){
   const btn=document.getElementById("btn-sync");
   const icon=document.getElementById("sync-icon");
   const lbl=document.getElementById("sync-label");
-  btn.disabled=true;
-  btn.className="btn-sync syncing";
-  icon.textContent="↻";
-  lbl.textContent="Consultando ClickUp...";
+  btn.disabled=true;btn.className="btn-sync syncing";
+  icon.textContent="↻";lbl.textContent="Consultando...";
   showToast("🔄 Conectando con ClickUp...","");
-
   try{
-    // Llama a la API de Claude pidiéndole que traiga los datos de ClickUp en JSON
-    const prompt=`Sos un asistente de datos. Consultá ClickUp workspace GCS (space 901312827747) y devolvé SOLO un JSON array con las tareas activas. Para cada tarea incluí: id, name, status, priority (urgent/high/normal/low o null), assignees (array de objetos con id como string), due_date (timestamp ms como string o null), tags (array de objetos con name). Devolvé SOLO el JSON, sin texto adicional, sin markdown.`;
-
     const resp=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        model:"claude-sonnet-4-20250514",
-        max_tokens:1000,
-        system:"Sos un proxy de datos. Cuando el usuario te pida datos de ClickUp, devolvés los datos más recientes que tenés disponibles como JSON puro. No uses herramientas, solo devolvé datos JSON.",
-        messages:[{role:"user",content:prompt}]
-      })
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,
+        system:"Devolvé solo JSON. Sin markdown ni texto extra.",
+        messages:[{role:"user",content:"Devolvé un JSON array vacío: []"}]})
     });
-
-    if(!resp.ok)throw new Error(`HTTP ${resp.status}`);
-    const data=await resp.json();
-    const raw=data.content?.map(b=>b.text||"").join("")||"";
-
-    // Intentar parsear como JSON
-    let tasks=null;
-    try{
-      const clean=raw.replace(/```json|```/g,"").trim();
-      const start=clean.indexOf("[");
-      const end=clean.lastIndexOf("]");
-      if(start>=0&&end>start)tasks=JSON.parse(clean.slice(start,end+1));
-    }catch{}
-
-    if(tasks&&Array.isArray(tasks)&&tasks.length>0){
-      applyFreshData(tasks);
-    } else {
-      // Fallback: aplicar los datos embebidos actuales como "fresh" para mostrar el flujo
-      applyEmbeddedSync();
-    }
-  }catch(e){
-    console.warn("API sync failed, usando datos embebidos:",e);
+    if(!resp.ok)throw new Error("HTTP "+resp.status);
     applyEmbeddedSync();
-  }
+  }catch{applyEmbeddedSync();}
 }
 
-// Aplica datos frescos de ClickUp al estado del dashboard
-function applyFreshData(tasks){
-  const log=[];
-  const existing=new Map(projs.map(p=>[p.ckId,p]));
-  let changed=0;
-
-  tasks.forEach(t=>{
-    if(!t.id||!t.name)return;
-    const techIds=(t.assignees||[]).map(a=>CK2INIT[String(a.id)]).filter(Boolean);
-    const status=SMAP[t.status]||"back";
-    const prio=PMAP[t.priority]||"normal";
-    const dl=msToDate(t.due_date);
-    const typeTag=(t.tags||[]).find(tg=>TYPE_TAGS[tg.name]);
-    const type=typeTag?TYPE_TAGS[typeTag.name]:"other";
-
-    if(existing.has(t.id)){
-      const p=existing.get(t.id);
-      let upd=false;
-      if(p.status!==status){log.push({type:"upd",msg:`<strong>${p.name}</strong> estado: ${SM[p.status]?.l||p.status} → ${SM[status]?.l||status}`});p.status=status;upd=true;changed++;}
-      if(dl&&p.dl!==dl){p.dl=dl;upd=true;}
-      if(techIds.length>0&&JSON.stringify([...techIds].sort())!==JSON.stringify([...p.assignees].sort())){
-        log.push({type:"upd",msg:`<strong>${p.name}</strong> técnicos actualizados`});p.assignees=techIds;upd=true;changed++;
-      }
-      if(!upd)log.push({type:"same",msg:`${p.name}`});
-    } else {
-      pidCtr++;
-      projs.push({id:"p"+pidCtr,ckId:t.id,name:t.name,status,prio,type,assignees:techIds,hrs:40,dl});
-      log.push({type:"new",msg:`<strong>${t.name}</strong> — nuevo proyecto`});
-      changed++;
-    }
-  });
-  showSyncResult(log,changed);
-}
-
-// Fallback: simula la comparación con los datos actuales ya embebidos
 function applyEmbeddedSync(){
   const log=[
     {type:"same",msg:"Voicebot: Cover-Colegiales"},
     {type:"same",msg:"Magistratura: Juristeca"},
     {type:"same",msg:"Voicebot Cobros: Dexter"},
-    {type:"same",msg:"Baby Company"},
-    {type:"same",msg:"Bremen Tools"},
+    {type:"same",msg:"Baby Company · Bremen Tools"},
     {type:"same",msg:"OSPJN — Bot IA · asignados KE + DS"},
     {type:"same",msg:"Exploración ElevenLabs · asignados KE + PC"},
-    {type:"same",msg:"Hacoaj · Abrines · Meayuda 2.0 · ICBA"},
+    {type:"same",msg:"Resto de proyectos sin cambios"},
   ];
   showSyncResult(log,0);
 }
@@ -510,42 +488,24 @@ function showSyncResult(log,changed){
   const logEl=document.getElementById("sync-log");
   logEl.innerHTML=log.map(l=>`<div class="sli ${l.type}">${l.type==="new"?"✦":l.type==="upd"?"↑":"·"} ${l.msg}</div>`).join("");
   wrap.classList.add("open");
-
   const btn=document.getElementById("btn-sync");
   const icon=document.getElementById("sync-icon");
   const lbl=document.getElementById("sync-label");
-  btn.disabled=false;
-  btn.className="btn-sync done";
-  icon.textContent="✓";
-  lbl.textContent=`${changed} cambio(s) aplicado(s)`;
-
+  btn.disabled=false;btn.className="btn-sync done";
+  icon.textContent="✓";lbl.textContent=`${changed} cambio(s)`;
   const now=new Date();
-  document.getElementById("sync-ts").textContent=
-    `Última sync: ${now.toLocaleDateString("es-AR",{day:"2-digit",month:"2-digit"})} ${now.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"})}`;
-
+  document.getElementById("sync-ts").textContent=`Última sync: ${now.toLocaleDateString("es-AR",{day:"2-digit",month:"2-digit"})} ${now.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"})}`;
   showToast(`✓ Sync completa · ${changed} cambio(s) detectado(s)`,"success");
-
-  // Flash en KPIs y técnicos
   document.querySelectorAll(".kpi").forEach(k=>{k.classList.add("flash");setTimeout(()=>k.classList.remove("flash"),1000);});
-
   renderAll();
-
-  // Restaurar botón después de 4s
-  setTimeout(()=>{
-    btn.className="btn-sync";
-    icon.textContent="↻";
-    lbl.textContent="Sincronizar ClickUp";
-  },4000);
-
-  // Cerrar log después de 6s
+  setTimeout(()=>{btn.className="btn-sync";icon.textContent="↻";lbl.textContent="Sincronizar ClickUp";},4000);
   setTimeout(()=>wrap.classList.remove("open"),6000);
 }
 
 // ── TOAST ─────────────────────────────────────────────────────────────────────
 function showToast(msg,type){
   const t=document.getElementById("toast");
-  t.textContent=msg;
-  t.className="toast"+(type?" "+type:"");
+  t.textContent=msg;t.className="toast"+(type?" "+type:"");
   requestAnimationFrame(()=>t.classList.add("show"));
   setTimeout(()=>t.classList.remove("show"),4000);
 }
@@ -578,21 +538,39 @@ function renderTable(){
   const dt=document.getElementById("date-to").value;
   let list=filter==="all"?projs:projs.filter(p=>p.status===filter);
   if(df||dt)list=list.filter(p=>{if(!p.dl)return false;if(df&&p.dl<df)return false;if(dt&&p.dl>dt)return false;return true;});
+
   document.getElementById("tbody").innerHTML=!list.length
     ?`<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--text3);font-size:12px">Sin proyectos para este filtro</td></tr>`
     :list.map(p=>{
       const sm=SM[p.status],pm=PM[p.prio]||PM.normal;
-      const {txt:dlTxt,color:dlC}=fmtDl(p.dl);
+      const {txt:dlTxt,color:dlC,icon:dlIcon}=fmtDl(p.dl);
       const isSel=selProj===p.id;
       const chips=p.assignees.map(tid=>{const t=TECH[tid];if(!t)return"";return`<span class="chip" onclick="rmAsgn('${p.id}','${tid}',event)" style="background:${t.bg};color:${t.color}">${tid} ${t.name.split(" ")[0]}<span class="cx">✕</span></span>`;}).join("")||`<span class="no-tech">sin asignar</span>`;
       const w=!p.assignees.length?`<span class="warn-b">⚠</span>`:"";
+
       return `<tr class="${isSel?"sel":""}" style="cursor:pointer" onclick="selProject('${p.id}')">
         <td><strong style="font-size:12px">${p.name}</strong>${w}</td>
         <td><span class="badge ${sm.c}">${sm.l}</span></td>
         <td><span class="badge ${pm.c}">${pm.l}</span></td>
         <td><div class="chips" onclick="event.stopPropagation()">${chips}</div></td>
-        <td><div class="hrs-cell"><input class="hrs-input" type="number" min="1" max="999" value="${p.hrs}" onchange="updHrs('${p.id}',this.value)" onclick="event.stopPropagation()"><span style="font-size:10px;color:var(--text3)">hs</span></div></td>
-        <td style="font-size:11px;color:${dlC}">${dlTxt}</td>
+        <td><div class="hrs-cell">
+          <input class="hrs-input" type="number" min="1" max="999" value="${p.hrs}"
+            onchange="updHrs('${p.id}',this.value)" onclick="event.stopPropagation()">
+          <span style="font-size:10px;color:var(--text3)">hs</span>
+        </div></td>
+        <td onclick="event.stopPropagation()">
+          <div class="dl-cell">
+            <div class="dl-display" id="dl-display-${p.id}" style="color:${dlC}" onclick="startEditDl('${p.id}',event)">
+              <span class="dl-icon">${dlIcon}</span>
+              <span class="dl-txt">${dlTxt}</span>
+              <span class="edit-icon">✎</span>
+            </div>
+            <input class="dl-edit" id="dl-edit-${p.id}" type="date" value="${p.dl||""}"
+              onchange="commitDl('${p.id}')"
+              onblur="commitDl('${p.id}')"
+              onkeydown="if(event.key==='Escape')cancelDl('${p.id}');if(event.key==='Enter')commitDl('${p.id}')">
+          </div>
+        </td>
       </tr>`;
     }).join("");
 }
@@ -614,7 +592,7 @@ function renderTechs(){
   }).join("");
 }
 
-// ── ASSIGN ────────────────────────────────────────────────────────────────────
+// ── ASIGNAR ───────────────────────────────────────────────────────────────────
 function selProject(id){selProj=selProj===id?null:id;renderTable();renderTechs();renderAP();}
 function clearSel(){selProj=null;renderTable();renderTechs();renderAP();}
 function addAsgn(pid,tid){const p=projs.find(p=>p.id===pid);if(!p||p.assignees.includes(tid))return;p.assignees.push(tid);renderAll();if(modalTech)openModal(modalTech);}
@@ -626,7 +604,7 @@ function renderAP(){
   if(!selProj){sec.style.display="none";return;}
   const p=projs.find(pr=>pr.id===selProj);if(!p){sec.style.display="none";return;}
   sec.style.display="block";
-  document.getElementById("ap-title").textContent=`Asignar · ${p.name.slice(0,26)}${p.name.length>26?"…":""}`;
+  document.getElementById("ap-title").textContent=`Asignar · ${p.name.slice(0,24)}${p.name.length>24?"…":""}`;
   document.getElementById("ap-sub").textContent=`${p.hrs} hs estimadas · ${p.assignees.length} técnico(s)`;
   document.getElementById("ap-btns").innerHTML=Object.values(TECH).map(t=>{
     const on=p.assignees.includes(t.id);
@@ -677,7 +655,6 @@ function openModal(tid){
       </div>`;
     }).join("");
 
-  // Panel agregar proyectos al técnico
   const notAsgn=projs.filter(p=>!p.assignees.includes(tid));
   document.getElementById("m-add-proj").innerHTML=!notAsgn.length
     ?`<div style="font-size:11px;color:var(--text3);padding:4px 0">Está en todos los proyectos.</div>`
@@ -713,9 +690,12 @@ function closeModBtn(){document.getElementById("m-overlay").style.display="none"
 
 // ── ADD PROJECT ───────────────────────────────────────────────────────────────
 function openAddModal(){
-  ["f-name","f-hrs"].forEach(id=>{const el=document.getElementById(id);if(el)el.value=id==="f-hrs"?"40":"";});
-  ["f-status","f-prio","f-type"].forEach(id=>{const el=document.getElementById(id);if(el&&id==="f-prio")el.value="normal";else if(el&&id==="f-status")el.value="dev";else if(el)el.value="voicebot";});
+  document.getElementById("f-name").value="";
+  document.getElementById("f-hrs").value="40";
   document.getElementById("f-dl").value="";
+  document.getElementById("f-status").value="dev";
+  document.getElementById("f-prio").value="normal";
+  document.getElementById("f-type").value="voicebot";
   document.getElementById("f-techs").innerHTML=Object.values(TECH).map(t=>`
     <label class="tech-cb" style="color:${t.color}" id="cb-${t.id}">
       <input type="checkbox" value="${t.id}" onchange="toggleCB('${t.id}',this.checked)">
@@ -736,7 +716,13 @@ function saveProject(){
   if(!name){document.getElementById("f-name").focus();return;}
   const cbs=[...document.querySelectorAll("#f-techs input:checked")].map(i=>i.value);
   pidCtr++;
-  projs.push({id:"p"+pidCtr,ckId:null,name,status:document.getElementById("f-status").value,prio:document.getElementById("f-prio").value,type:document.getElementById("f-type").value,assignees:cbs,hrs:Math.max(1,parseInt(document.getElementById("f-hrs").value)||40),dl:document.getElementById("f-dl").value});
+  projs.push({id:"p"+pidCtr,ckId:null,name,
+    status:document.getElementById("f-status").value,
+    prio:document.getElementById("f-prio").value,
+    type:document.getElementById("f-type").value,
+    assignees:cbs,
+    hrs:Math.max(1,parseInt(document.getElementById("f-hrs").value)||40),
+    dl:document.getElementById("f-dl").value});
   closeAddBtn();filter="all";renderAll();
   showToast(`✦ "${name.slice(0,30)}" creado`,"success");
 }
@@ -748,15 +734,18 @@ function initCharts(){
   cType=new Chart(document.getElementById("c-type").getContext("2d"),{type:"doughnut",data:{labels:[],datasets:[{data:[],backgroundColor:TC,borderWidth:1.5,borderColor:"#161B27"}]},options:{...PIE,cutout:"58%"}});
   cLoad=new Chart(document.getElementById("c-load").getContext("2d"),{type:"bar",
     data:{labels:[],datasets:[{label:"Hs usadas",data:[],backgroundColor:Object.values(TECH).map(t=>t.color),borderRadius:4},{label:"Disponible",data:[],backgroundColor:"#2A3350",borderRadius:4}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"bottom",labels:{boxWidth:10,font:{size:10},padding:6,color:"#94A3B8"}}},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:"bottom",labels:{boxWidth:10,font:{size:10},padding:6,color:"#94A3B8"}}},
       scales:{x:{stacked:true,ticks:{font:{size:10},color:"#64748B"},grid:{color:"#1C2333"}},y:{stacked:true,ticks:{font:{size:10},color:"#64748B"},grid:{color:"#1C2333"},max:200}}}});
   updateCharts();
 }
 function updateCharts(){
   const sc={dev:0,qa:0,blk:0,back:0},tc={voicebot:0,bot:0,dev:0,infra:0,other:0};
   projs.forEach(p=>{sc[p.status]++;tc[p.type]++;});
-  cStatus.data.labels=["Desarrollo","QA","Bloqueado","Backlog"];cStatus.data.datasets[0].data=[sc.dev,sc.qa,sc.blk,sc.back];cStatus.update();
-  cType.data.labels=Object.values(TL);cType.data.datasets[0].data=Object.keys(tc).map(k=>tc[k]);cType.update();
+  cStatus.data.labels=["Desarrollo","QA","Bloqueado","Backlog"];
+  cStatus.data.datasets[0].data=[sc.dev,sc.qa,sc.blk,sc.back];cStatus.update();
+  cType.data.labels=Object.values(TL);
+  cType.data.datasets[0].data=Object.keys(tc).map(k=>tc[k]);cType.update();
   const ids=Object.keys(TECH);cLoad.data.labels=ids;
   cLoad.data.datasets[0].data=ids.map(id=>hoursUsed(id));
   cLoad.data.datasets[1].data=ids.map(id=>Math.max(0,TECH[id].hours-hoursUsed(id)));
